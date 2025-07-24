@@ -1,0 +1,29 @@
+services:
+  oracledb:
+    image: container-registry.oracle.com/database/enterprise:21.3.0.0
+    ports:
+      - 1521:1521                       # Oracle Listener
+      - 5500:5500                       # OEM Express
+    environment:
+      - ORACLE_SID=ORCLCDB              # default:ORCLCDB
+      - ORACLE_PDB=ORCLPDB1             # default: ORCLPDB1
+      - ORACLE_PWD=password             # default: auto generated
+      # - INIT_SGA_SIZE=2048            # The total memory in MB that should be used for all SGA components
+      # - INIT_PGA_SIZE=2048            # The target aggregate PGA memory in MB that should be used for all server processes attached to the instance
+      - ORACLE_EDITION=                 # enterprise/standard, default: enterprise
+      - ORACLE_CHARACTERSET=AL32UTF8    # default: AL32UTF8
+      - ENABLE_ARCHIVELOG=false         # default: false
+    volumes:                            # custom this
+      - /mnt/sda/oracledb/data:/opt/oracxle/oradata
+      - /mnt/sda/oracle/orabackups:/opt/oracle/orabackups
+      - /mnt/sda/oracle/oradata:/opt/oracle/oradata
+      - /mnt/sda/oracle/admin:/opt/oracle/admin
+      - /mnt/sda/oracle/dbs:/opt/oracle/dbs
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+    deploy:
+      resources:
+        limits:
+          memory: 1G
