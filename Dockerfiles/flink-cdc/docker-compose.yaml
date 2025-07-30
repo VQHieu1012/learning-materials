@@ -1,0 +1,29 @@
+services:
+  jobmanager:
+    # image: flink:latest
+    build: .
+    ports:
+      - "8081:8081"
+    command: jobmanager
+    environment:
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: jobmanager
+    volumes:
+      - ./lib/mysql-connector-java-8.0.27.jar:/opt/flink/lib/mysql-connector-java-8.0.27.jar
+      - ./lib-cdc/flink-cdc-pipeline-connector-mysql-3.4.0.jar:/opt/flink-cdc/lib/flink-cdc-pipeline-connector-mysql-3.4.0.jar
+      - ./lib-cdc/flink-cdc-pipeline-connector-doris-3.4.0.jar:/opt/flink-cdc/lib/flink-cdc-pipeline-connector-doris-3.4.0.jar
+      - ./jobs:/opt/flink-cdc/jobs
+
+  taskmanager:
+    # image: flink:latest
+    build: .
+    depends_on:
+      - jobmanager
+    command: taskmanager -Djobmanager.rpc.address=jobmanager
+    scale: 1
+    environment:
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: jobmanager
+        taskmanager.numberOfTaskSlots: 20
