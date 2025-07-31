@@ -9,6 +9,7 @@ services:
       - |
         FLINK_PROPERTIES=
         jobmanager.rpc.address: jobmanager
+        execution.checkpointing.interval: 3000
     volumes:
       - ./lib/mysql-connector-java-8.0.27.jar:/opt/flink/lib/mysql-connector-java-8.0.27.jar
       - ./lib-cdc/flink-cdc-pipeline-connector-mysql-3.4.0.jar:/opt/flink-cdc/lib/flink-cdc-pipeline-connector-mysql-3.4.0.jar
