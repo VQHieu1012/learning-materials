@@ -33,6 +33,7 @@ My recommended reading papers
 - [Fundamentals of Database Engineering](https://www.udemy.com/course/database-engines-crash-course) - Hussein Nasser
 - [SQL Server High Availability and Disaster Recovery (HA/DR)](https://www.udemy.com/course/sqlserverhadrdeepdive/?couponCode=PMNVD2525) - Edwin M Sarmiento
 - [Apache Kafka Series - Learn Apache Kafka for Beginners v3](https://www.udemy.com/course/apache-kafka/?srsltid=AfmBOoo2UVdbF9qzDJxuC6NfYQsXk-w533vNzD-07UcxfiitXcsihVAE&couponCode=KEEPLEARNING) - Stephane Maarek
+- [Airflow](https://academy.astronomer.io) - Marc Lamberti
 
 ## Youtube
 
